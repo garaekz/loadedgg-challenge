@@ -1,17 +1,29 @@
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { defineStore } from 'pinia'
 
 export const useUsersStore = defineStore('users', () => {
-    const users = ref([]);
-    const count = ref(0);
+    const loading = ref(false);
+    const users = ref({});
+    const page = ref(1);
 
-    const increment = () => {
-        count.value++;
-    };
+    const fetchUsers = async () => {
+        try {
+            loading.value = true;
+            const { data } = await axios.get(`/api/users?page=${page.value}`);
+            users.value = data;
+        } catch (error) {
+            console.error(error);
+        } finally {
+            loading.value = false;
+        }
+    }
+
+    watch(page, fetchUsers);
 
     return {
         users,
-        count,
-        increment,
+        page,
+        fetchUsers,
+        loading,
     };
 });
