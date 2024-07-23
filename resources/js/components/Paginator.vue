@@ -86,11 +86,11 @@ const goToPage = (page) => {
         aria-label="Table navigation"
     >
         <span class="text-sm font-normal text-science-green-500">
-            Mostrando
+            Showing
             <span class="font-semibold text-science-green-500"
                 >{{ getStartingIndex() }}-{{ getEndingIndex() }}</span
             >
-            de
+            of
             <span class="font-semibold text-science-green-500">{{
                 totalItems
             }}</span>
@@ -147,7 +147,7 @@ const goToPage = (page) => {
                 </button>
                 <span
                     v-else
-                    class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-gray-600 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:bg-gray-700/40 dark:text-white"
+                    class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-gray-600 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:bg-gray-700/40 dark:text-white font-bold"
                 >
                     {{ pageNumber }}
                 </span>
