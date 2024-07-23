@@ -3,6 +3,11 @@ import userRoutes from '@/routes/users';
 
 const routes = [
     ...userRoutes,
+	{
+		path: '/:pathMatch(.*)*',
+		name: 'not-found',
+		component: () => import('@/views/NotFound.vue')
+	}
 ];
 
 const router = createRouter({
