@@ -9,6 +9,10 @@ use Illuminate\Database\Seeder;
 
 class UserCommentSeeder extends Seeder
 {
+    const MIN_COMMENTS = 3;
+
+    const MAX_COMMENTS = 28;
+
     /**
      * Run the database seeds.
      */
@@ -30,7 +34,7 @@ class UserCommentSeeder extends Seeder
         $dates = $this->generateDateRange($start, $end);
 
         foreach ($dates as $date) {
-            Comment::factory()->count(rand(10, 100))->create([
+            Comment::factory()->count(rand(self::MIN_COMMENTS, self::MAX_COMMENTS))->create([
                 'created_at' => $date,
                 'user_id' => $user->id,
             ]);
