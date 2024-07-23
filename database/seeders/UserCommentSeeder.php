@@ -42,7 +42,7 @@ class UserCommentSeeder extends Seeder
         $dates = [];
 
         for ($date = $start; $date->lte($end); $date->addDay()) {
-            $dates[] = $date;
+            $dates[] = $date->copy();
         }
 
         return $dates;
