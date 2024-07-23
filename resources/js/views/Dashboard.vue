@@ -15,8 +15,10 @@ onMounted(fetchUsers);
 </script>
 <template>
     <div class="w-full flex justify-center items-center">
-        <div class="w-full max-w-screen-xl p-8 flex gap-4">
-            <div class="w-2/6 flex flex-col gap-4 p-4 bg-slate-900 rounded-md">
+        <div class="w-full max-w-screen-xl p-8 flex flex-col lg:flex-row gap-4">
+            <div
+                class="lg:w-2/6 w-full flex flex-col gap-4 p-4 bg-slate-900 rounded-md"
+            >
                 <h4 class="text-lg">Filters</h4>
                 <CountryFilter v-model="filter.country" />
                 <TrendFilter v-model="filter.comment_activity_trend" />
