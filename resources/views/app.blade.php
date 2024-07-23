@@ -7,7 +7,7 @@
         <title>Loaded GG</title>
         @vite(['resources/js/app.js', 'resources/css/app.css'])
     </head>
-    <body>
+    <body class="bg-slate-950 text-slate-200">
         <div id="app"></div>
     </body>
 </html>
