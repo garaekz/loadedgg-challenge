@@ -19,8 +19,24 @@ class UserResource extends JsonResource
             'full_name' => $this->full_name,
             'avatar' => $this->avatar,
             'country' => CountryResource::make($this->country),
+            'comment_activity' => [
+                'comments_today' => $this->comments_today_count,
+                'trend' => $this->calculateTrend(),
+            ],
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ];
+    }
+
+    private function calculateTrend(): string
+    {
+        if ($this->comments_today_count > $this->comments_yesterday_count) {
+            return 'higher';
+        }
+
+        if ($this->comments_today_count < $this->comments_yesterday_count) {
+            return 'lower';
+        }
+
+        return 'neutral';
     }
 }
