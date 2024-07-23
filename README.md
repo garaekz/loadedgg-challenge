@@ -1,4 +1,6 @@
-## Loaded.gg Challenge
+# Loaded.gg Challenge
+
+## About the solution
 
 I tried to keep it as simple as possible, in some cases I left a comment here and there just to explain my thought process and why I didn't follow exactly the instructions. I will list some of the things I did and why I did them vs why I didn't.
 
@@ -14,5 +16,20 @@ I tried to keep it as simple as possible, in some cases I left a comment here an
 -   Pagination: I used the default Laravel pagination, I even set a `per_page` param even if it wasn't gonna be used just to future-proof the app.
 -   Sorting: I used the default Laravel sorting, I didn't want to mess with the query too much.
 -   Filters: I kinda follow spatie query builder naming conventions, I first wanted to use the package as it really gave me all I needed but then I wouldn't be able to show my skills, so I decided to implement it myself in a very simple way.
+
+## Installation
+
+1. Clone the repository
+2. Copy the `.env.example` file to `.env`, or run `cp .env.example .env`
+3. Fill new `.env` file with your database credentials
+4. Run `composer install`
+5. Run `npm install`
+6. Run `php artisan key:generate`
+7. Run `php artisan migrate --seed`, hang tight, it will take a while since it's seeding a lot of data. Optionally you can go to `database/seeders/UserCommentSeeder.php` and change the `MIN_COMMENTS` and `MAX_COMMENTS` constant values to seed less data.
+8. Run `npm run dev`
+9. Run `php artisan serve`
+10. Visit `http://localhost:8000`
+
+## Final thoughts
 
 I hope you like it, I had a lot of fun doing it. I'm looking forward to your feedback.
