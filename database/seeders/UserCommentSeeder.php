@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Comment;
-use App\Models\Country;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -17,7 +16,6 @@ class UserCommentSeeder extends Seeder
     {
         User::factory()
             ->count(30)
-            ->countries(Country::pluck('id')->toArray())
             ->create()
             ->each(function (User $user) {
                 $this->createCommentsForUser($user);
