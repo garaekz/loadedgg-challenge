@@ -1,12 +1,13 @@
 import { ref, watch } from 'vue';
 import { defineStore } from 'pinia'
+import { useStorage } from '@vueuse/core'
 
 export const useUsersStore = defineStore('users', () => {
     const loading = ref(false);
     const users = ref({});
-    const page = ref(1);
-    const sortBy = ref({ field: "created_at", direction: "desc" });
-    const filter = ref({
+    const page = useStorage('users-page', 1);
+    const sortBy = useStorage('users-sortBy', { field: "created_at", direction: "desc" });
+    const filter = useStorage('users-filter', {
         country: null,
         comment_activity_trend: null,
     });
