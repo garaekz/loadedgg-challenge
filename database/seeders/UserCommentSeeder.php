@@ -30,7 +30,7 @@ class UserCommentSeeder extends Seeder
         $dates = $this->generateDateRange($start, $end);
 
         foreach ($dates as $date) {
-            Comment::factory()->count(rand(1, 10))->create([
+            Comment::factory()->count(rand(10, 100))->create([
                 'created_at' => $date,
                 'user_id' => $user->id,
             ]);
