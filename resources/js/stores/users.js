@@ -5,11 +5,22 @@ export const useUsersStore = defineStore('users', () => {
     const loading = ref(false);
     const users = ref({});
     const page = ref(1);
+    const sortBy = ref({ field: "created_at", direction: "desc" });
+    const filter = ref({
+        country: null,
+        comment_activity_trend: null,
+    });
 
     const fetchUsers = async () => {
         try {
             loading.value = true;
-            const { data } = await axios.get(`/api/users?page=${page.value}`);
+            const { data } = await axios.get(`/api/users`, {
+                params: {
+                    page: page.value,
+                    filter: filter.value,
+                    sort: sortBy.value,
+                },
+            });
             users.value = data;
         } catch (error) {
             console.error(error);
@@ -19,11 +30,15 @@ export const useUsersStore = defineStore('users', () => {
     }
 
     watch(page, fetchUsers);
+    watch(filter, fetchUsers, { deep: true });
+    watch(sortBy, fetchUsers);
 
     return {
         users,
         page,
+        filter,
         fetchUsers,
         loading,
+        sortBy,
     };
 });
