@@ -2,46 +2,33 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+
+    protected $fillable = ['first_name', 'last_name', 'avatar', 'country_id'];
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+     * This will enable to have more countries in the future
+     * and to be able to add more fields to the country table
+     **/
+    public function country(): BelongsTo
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->belongsTo(Country::class);
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function getFullNameAttribute(): string
+    {
+        return "{$this->first_name} {$this->last_name}";
     }
 }
