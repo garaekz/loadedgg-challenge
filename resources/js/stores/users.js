@@ -14,7 +14,7 @@ export const useUsersStore = defineStore('users', () => {
     const fetchUsers = async () => {
         try {
             loading.value = true;
-            const { data } = await axios.get(`/api/users`, {
+            const { data } = await axios.get(`/api/dashboard`, {
                 params: {
                     page: page.value,
                     filter: filter.value,
